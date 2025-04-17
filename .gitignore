@@ -1,0 +1,35 @@
+# Python-related
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.env
+
+# Virtual environment
+env/
+venv/
+.venv/
+med_aienv/
+.med_aienv/
+
+# IDE-related
+.vscode/
+.idea/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Logs and debug files
+*.log
+
+# Audio and media files
+*.mp3
+*.wav
+
+# Dependency files
+*.egg-info/
+pip-wheel-metadata/
+
+# Gradio cache
+gradio_cache/

@@ -17,7 +17,7 @@ def encode_image(image_path):
 from groq import Groq
 
 query="Is there something wrong with my face?"
-model="llama-3.2-90b-vision-preview"
+model="meta-llama/llama-4-maverick-17b-128e-instruct"
 
 def analyze_image_with_query(query, model, encoded_image):
     client=Groq()  

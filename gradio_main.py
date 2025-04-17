@@ -16,18 +16,23 @@ system_prompt = """You have to act as a professional doctor, i know you are not 
 def process_inputs(audio_filepath, image_filepath):
     try:
         # 1. Transcribe audio
-        speech_to_text_output = transcribe_with_groq(
-            GROQ_API_KEY=os.environ.get("GROQ_API_KEY"),
-            audio_filepath=audio_filepath,
-            stt_model="whisper-large-v3"
+        if audio_filepath:
+            speech_to_text_output = transcribe_with_groq(
+                GROQ_API_KEY=os.environ.get("GROQ_API_KEY"),
+                audio_filepath=audio_filepath,
+                stt_model="whisper-large-v3"
         )
+        else:
+            speech_to_text_output= ""
 
         # 2. Analyze image with transcribed query
         if image_filepath:
+            query=system_prompt + speech_to_text_output
+            encoded_image=encode_image(image_filepath)
             doctor_response = analyze_image_with_query(
                 query=system_prompt + speech_to_text_output,
                 encoded_image=encode_image(image_filepath),
-                model="llama-3.2-11b-vision-preview"
+                model="meta-llama/llama-4-maverick-17b-128e-instruct"
             )
         else:
             doctor_response = "No image provided for me to analyze."
